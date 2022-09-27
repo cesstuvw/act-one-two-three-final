@@ -1,0 +1,136 @@
+@font-face {
+    font-family: Stretch-Pro;
+    src: url(Static/Fonts/StretchPro.otf);
+}
+
+@font-face {
+    font-family: Mont-Mono;
+    src: url(Static/Fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Mont-SB;
+    src: url(Static/Fonts/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: Mont-Black;
+    src: url(Static/Fonts/Montserrat-Black.ttf);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:root {
+    --dark-text-color: #000;
+    --c-green-color: #A0FF01;
+    --c-light-grey-color: #C1C1C1;
+    --bg-color: #EFEFEF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Mont-Mono;
+    color: var(--dark-text-color);
+}
+
+/* <!------------------------- START -- ACTIVITY ONE ------------------------> */
+.act-one-h  {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-color) !important;
+    background-image: url(Static/Imgs/bg.svg) !important;
+}
+
+.act-one h1{
+    font-family: Stretch-Pro;
+    font-size: 2.5rem;
+    padding-bottom: 1.2rem;
+    line-height: 2.5rem;
+    color: var(--dark-text-color);
+} 
+
+input[type=number],
+input[type=text],
+input[type=email]{
+    border-color: var(--c-light-grey-color) !important;
+    border-width: 4px !important;
+    border-radius: 0 !important;
+    background-color: var(--bg-color) !important;
+}
+
+.employee-sal p{
+    font-family: Mont-Mono;
+    font-size: 1.25rem;
+}
+
+.input-group{
+    width: 400px !important;
+    height: 50px;
+}
+
+.btn-primary{
+    font-family: Stretch-Pro !important;
+    font-size: 1.05rem !important;
+    color: var(--dark-text-color) !important;
+    padding: 0.7rem 1rem 0.7rem  !important;
+    background-color: var(--c-green-color) !important;
+    border-style: none !important;
+    border-radius: 0 !important;
+}
+
+.btn-primary:hover{
+    background-color: var(--dark-text-color) !important;
+    color: var(--c-green-color) !important;
+}
+
+.form-control:focus {
+    border-color: #B5E466 !important;
+    box-shadow: 0 0 0 0.2rem rgba(204, 238, 212, 0.25) !important;
+} 
+
+/* <!------------------------- END -- ACTIVITY ONE ------------------------> */
+.act-two-three-h{
+    width: 100%;
+    height: 100vh !important;
+    position: absolute;
+    top: 57.8rem;
+    left: 0;
+    background-color: var(--bg-color)
+}
+
+.registration .input-group{
+    width: 550px !important;
+    height: 50px;
+}
+
+.birthday{
+    font-family: Mont-Mono !important;
+    font-size: 1rem !important;
+}
+
+.select-btn select{
+    width: 180px;
+    height: 50px;
+    border-color: var(--c-light-grey-color) !important;
+    border-width: 4px !important;
+    border-radius: 0 !important;
+    background-color: var(--bg-color) !important;
+    text-align: center;
+}
+
+.select-btn p{
+    font-family: Mont-SB;
+    font-size: 1.1rem;
+}
+
+

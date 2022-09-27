@@ -133,4 +133,8 @@ input[type=email]{
     font-size: 1.1rem;
 }
 
+.registration p{
+    font-family: Mont-Mono;
+    font-size: 1rem !important;
+}
 

@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
             <div class="error mb-3">
                 <?php echo $errSal;?>
             </div>
-            <input type="submit" name="submit" value="CALCULATE"   class="btn btn-primary mb-3">
+                <input type="submit" name="submit" value="CALCULATE" class="btn btn-primary mb-3">
             </form>
         </div>
     </div>
@@ -84,12 +84,13 @@ if(isset($_POST['submit']))
         $tax = 0.0318 * $deduc; 
     
         $net = $deduc - $tax;
-        $net = number_format($net, 2, '.', '.');
+        $net = number_format($net, 2, '.', ',');
 
         // echo "<br>";
         // echo "Philhealth :" . $philhealth . "<br>". "Pag-Ibig :". $pag_ibig . "<br>". "SSS :". $sss . "<br>". "Tax:" . number_format($tax, 2, '.', '.');
         // echo "<br>";
         // echo "<br>";
+        
         echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>CALCULATED NET INCOME:</p>";
         echo '<h2 style="font-size: 5rem; font-family: Mont-Black;">'.$net.'</h2>';
     }
@@ -98,60 +99,11 @@ if(isset($_POST['submit']))
 <!------------------------- END -- ACTIVITY ONE ------------------------>
 
 <!------------------------- START -- ACTIVITY TWO-THREE ------------------------> 
-<?php 
-if (empty($_POST['name'])){
-    $errName = "<span 
-                    style='color:red;
-                    font-style: italic;
-                    '>Name is required.
-                </span>";
-}
-else{
-    $employee = $_POST['name'];
-    $_SESSION['name']=$name;
-}
-
-if (empty($_POST['employee'])){
-    $errEmp = "<span 
-                    style='color:red;
-                    font-style: italic;
-                    '>Employee Number is required.
-                </span>";
-}
-else{
-    $employee = $_POST['employee'];
-    $_SESSION['employee']=$employee;
-}
-
-if (empty($_POST['address'])){
-    $errAdd = "<span 
-                    style='color:red;
-                    font-style: italic;
-                    '>Name is required.
-                </span>";
-}
-else{
-    $address = $_POST['address'];
-    $_SESSION['address']=$address;
-}
-
-if (empty($_POST['place'])){
-    $errPlace = "<span 
-                    style='color:red;
-                    font-style: italic;
-                    '>Birth place is required.
-                </span>";
-}
-else{
-    $place = $_POST['place'];
-    $_SESSION['place']=$place;
-}
-?>
-
-<div class="act-two-three-h d-flex align-items-center" id="act23">
+<div id="act23" class="act-two-three-h d-flex align-items-center">
     <div class="container act-two-three">
         <div class="registration">
             <h1>REGISTRATION <br>FORM</h1>
+            <p>Please fill in all the information.</p>
             <div class="row">
                 <div class="col">
                 <form  method="POST">
@@ -164,13 +116,11 @@ else{
                     <div class="input-group mb-3"> 
                         <input type="text" name="address" class="form-control" placeholder="Address" autocomplete="off" require >
                     </div>
-                    <!-- <div class="input-group mb-3"> 
-                        <input type="text" name="bday" class="form-control" placeholder="Birthday" autocomplete="off">
-                    </div> -->
                     <div class="birthday">
                         <div class="select-btn">
                             <p class="bday-title mb-2">Birthday (MM-DD-YYYY)</p>
                             <select name="month">
+                            <option></option>;
                                 <?php 
                                     for($m=1; $m<=12; $m++)
                                     {
@@ -179,6 +129,7 @@ else{
                                 ?> 
                             </select>   
                             <select name="day">
+                            <option></option>;
                                 <?php 
                                     
                                     for($d=1; $d<=31; $d++){
@@ -187,6 +138,7 @@ else{
                                 ?> 
                             </select>  
                             <select name="year">
+                            <option></option>;
                                     <?php 
                                         for($y=1972; $y<=2022; $y++){
                             
@@ -197,30 +149,35 @@ else{
                         </div>
                     </div>  
                     <?php
-                    echo $bday;
-                    echo"<br>";
-                    $bday;
-                    $Month = $_POST['month'];
-                    $Day = $_POST['day'];
-                    $Year = $_POST['year'];
-
-                    if($Month % 2 == 0){
-                        if($Month == 2 && $Day > 28){
-                        $bday = "February has 28 days only. Please enter a valid birthday.";
                         echo $bday;
+                        echo"<br>";
+
+                    
+                        if(!empty($_POST)){
+                        $bday;
+                        $Month = $_POST['month'];
+                        $Day = $_POST['day'];
+                        $Year = $_POST['year'];
+                
+
+                        //  if($Month % 2 == 0){
+                            if($Month == 2 && $Day > 28){
+                            $bday = "February has 28 days only. Please enter a valid birthday.";
+                            echo $bday;
 
 
-                        }elseif ($Day > 30){
-                        $bday = "This month has 30 days only. Please enter a valid birthday.";
-                        echo $bday;
+                            }elseif ($Day > 30){
+                            $bday = "This month has 30 days only. Please enter a valid birthday.";
+                            echo $bday;
 
+                            }else{
+                            $bday = $Month .", ". $Day . ", ". $Year;
+                            }
+                            
                         }else{
-                        $bday = $Month .", ". $Day . ", ". $Year;
+                            $bday = $Month .", ". $Day . ", ". $Year;
                         }
-                        
-                    }else{
-                        $bday = $Month .", ". $Day . ", ". $Year;
-                    }                                   
+                        // }  
                     ?>
                     <div class="input-group mb-3"> 
                         <input type="text" name="place" class="form-control" placeholder="Birth Place" autocomplete="off" >
@@ -234,34 +191,35 @@ else{
                     <input type="submit" name="register" value="REGISTER" class="btn btn-primary mb-3">
                 </form>
                 </div>
-                <div class="col mt-0">
-                <?php
-                echo "<br>";
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">NAME: </h2> '.$name.'';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">EMPLOYEE NO.: '.$employee.'</h2>';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">ADDRESS: '.$address.'</h2>';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">BIRTHDAY: '.$address.'</h2>';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">BIRTH PLACE: '.$place.'</h2>';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">CONTACT NO.: '.$contact.'</h2>';
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">EMAIL ADDRESS: '.$email.'</h2>';
-                echo "<br>";
-                echo "<br>";
-                
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">PHILHEALTH:</h2> '. $philhealth .''; 
-                echo '<h2 style="font-size: 1rem; font-family: Mont-SB;">PAG-IBIG:</h2> '. $pag_ibig .''; 
-                "<br>". "Pag-Ibig :". $pag_ibig . 
-                "<br>". "SSS :". $sss . 
-                "<br>". "Tax:" . number_format($tax, 2, '.', '.');
-                echo "<br>";
-                echo "<br>";
-                echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>NET INCOME:</p>";
-                echo '<h2 style="font-size: 3rem; font-family: Mont-Black;">'.$net.'</h2>'
-                ?>
+                <div class="col">
+                    <?php
+                    error_reporting(0);
+                        if(!empty($_POST)){
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>NAME: </b>'.$name.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>EMPLOYEE NUMBER: </b> '.$employee.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>ADDRESS: </b> '.$address.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>BIRTHDAY: </b> '.$birthday.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>BIRTH PLACE: </b> '.$place.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>CONTACT NUMBER: </b> '.$contact.'</h2>';
+                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>EMAIL ADDRESS: </b> '.$email.'</h2>';
+                            echo "<br>";
+                            echo "<br>";
+                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>PHILHEALTH: </b> '.$philhealth.'</h2>';
+                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>PAG-IBIG: </b> '.$pag_ibig.'</h2>';
+                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>SSS: </b> '.$sss.'</h2>';
+                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>TAX: </b> '.$tax. number_format($tax, 2, '.', '.');'</h2>';    
+                            echo "Philhealth: " . $philhealth . "<br>". "Pag-Ibig: ". $pag_ibig . "<br>". "SSS: ". $sss . "<br>". "Tax: " . number_format($tax, 2, '.', '.');                
+                            echo "<br>";
+                            echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>NET INCOME:</p>";
+                            echo '<h2 style="font-size: 3rem; font-family: Mont-Black;">'.$net.'</h2>';
+                        }
+                    
+                    ?>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>    
 <!------------------------- END -- ACTIVITY TWO-THREE ------------------------> 
 </body>
 </html>

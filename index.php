@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $_SESSION['salary']=$salary;
     }
 }
+error_reporting(E_ERROR | E_PARSE);
 ?>
 
 <section class="act-one-h text-start d-flex align-items-center" id="act1">
@@ -93,6 +94,7 @@ if(isset($_POST['submit']))
         
         echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>CALCULATED NET INCOME:</p>";
         echo '<h2 style="font-size: 5rem; font-family: Mont-Black;">'.$net.'</h2>';
+        error_reporting(E_ERROR | E_PARSE);
     }
 }
 ?>
@@ -162,12 +164,12 @@ if(isset($_POST['submit']))
 
                         //  if($Month % 2 == 0){
                             if($Month == 2 && $Day > 28){
-                            $bday = "February has 28 days only. Please enter a valid birthday.";
+                            $bday = '<h3 style="color:red; margin-bottom: 2rem">February has 28 days only. Please enter a valid birthday.</h3>';
                             echo $bday;
 
 
                             }elseif ($Day > 30){
-                            $bday = "This month has 30 days only. Please enter a valid birthday.";
+                            $bday = '<h3 style="color:red;">This month has 30 days only. Please enter a valid birthday.</h3>';
                             echo $bday;
 
                             }else{
@@ -194,27 +196,16 @@ if(isset($_POST['submit']))
                 <div class="col">
                     <?php
                     error_reporting(0);
-                        if(!empty($_POST)){
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>NAME: </b>'.$name.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>EMPLOYEE NUMBER: </b> '.$employee.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>ADDRESS: </b> '.$address.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>BIRTHDAY: </b> '.$birthday.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>BIRTH PLACE: </b> '.$place.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>CONTACT NUMBER: </b> '.$contact.'</h2>';
-                            echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>EMAIL ADDRESS: </b> '.$email.'</h2>';
-                            echo "<br>";
-                            echo "<br>";
-                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>PHILHEALTH: </b> '.$philhealth.'</h2>';
-                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>PAG-IBIG: </b> '.$pag_ibig.'</h2>';
-                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>SSS: </b> '.$sss.'</h2>';
-                            // echo '<h2 style="font-size: 1rem; font-family: Mont-Mono; text-align:left;"><b>TAX: </b> '.$tax. number_format($tax, 2, '.', '.');'</h2>';    
-                            echo "Philhealth: " . $philhealth . "<br>". "Pag-Ibig: ". $pag_ibig . "<br>". "SSS: ". $sss . "<br>". "Tax: " . number_format($tax, 2, '.', '.');                
-                            echo "<br>";
-                            echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>NET INCOME:</p>";
-                            echo '<h2 style="font-size: 3rem; font-family: Mont-Black;">'.$net.'</h2>';
-                        }
-                    
+                    if(isset($_POST['submit']))
+                    {
+                        echo "<b>PHILHEALTH: </b>" . $philhealth . "<br>". "<b>PAG-IBIG: </b>". $pag_ibig . "<br>". "<b>SSS: </b>". $sss . "<br>". "<b>TAX: </b>" . number_format($tax, 2, '.', '.');                                        echo "<br>";
+                        echo "<p style='font-size: 1.25rem; font-family: Mont-SB; margin-top:1.5rem;'>NET INCOME:</p>";
+                        echo '<h2 style="font-size: 3rem; font-family: Mont-Black;">'.$net.'</h2>';
+                        error_reporting(E_ERROR | E_PARSE);
+                    }
                     ?>
+                    
+                    
                 </div>
             </div>
         </div>
